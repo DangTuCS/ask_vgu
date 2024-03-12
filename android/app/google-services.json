@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1094766589175",
+    "project_id": "ask-vgu",
+    "storage_bucket": "ask-vgu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1094766589175:android:539638737428fa0e64cff2",
+        "android_client_info": {
+          "package_name": "com.vgu.ask_vgu.ask_vgu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBP0RCvYn_Eauyrb-S_lzjZagW1nQ8iZGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
