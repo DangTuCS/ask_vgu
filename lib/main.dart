@@ -1,3 +1,6 @@
+import 'package:ask_vgu/main_binding.dart';
+import 'package:ask_vgu/route/app_route.dart';
+import 'package:ask_vgu/utils/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,19 +22,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(),
+      theme: ThemeUtils.lightTheme,
+      darkTheme: ThemeUtils.darkTheme,
+      themeMode: ThemeMode.system,
+      initialRoute: AppRoute.splash,
+      initialBinding: MainBinding(),
+      debugShowCheckedModeBanner: false,
+      getPages: routes,
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold();
   }
 }
