@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeUtils.lightTheme,
       darkTheme: ThemeUtils.darkTheme,
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       initialRoute: AppRoute.splash,
       initialBinding: MainBinding(),
       debugShowCheckedModeBanner: false,

@@ -32,7 +32,7 @@ class GraphqlService {
 
   Future<Map<String, dynamic>?> mutate({required String mutationQuery, required Map<String, dynamic> variables}) async {
     final MutationOptions options = MutationOptions(document: gql(mutationQuery), variables: variables);
-    final QueryResult result = await graphlitClient.mutate(options).timeout(const Duration(seconds: 5));
+    final QueryResult result = await graphlitClient.mutate(options).timeout(const Duration(seconds: 30));
 
     if (result.hasException) {
       throw BaseException(

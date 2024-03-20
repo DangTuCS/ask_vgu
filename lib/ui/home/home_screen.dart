@@ -1,5 +1,6 @@
 import 'package:ask_vgu/route/app_navigator.dart';
 import 'package:ask_vgu/utils/theme.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,13 +11,45 @@ class HomeScreen extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
       child: Obx(() {
         return Scaffold(
             appBar: AppBar(
               title: const Text('Ask VGU'),
-              automaticallyImplyLeading: false,
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                AppNavigators.gotoConversation(conversationId: null)?.then((value) {
+                  controller.getConversations();
+                });
+              },
+              child: const Icon(Icons.add),
+            ),
+            drawer: Drawer(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  DrawerHeader(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                    ),
+                    child: const Text('Ask VGU'),
+                  ),
+                  ListTile(
+                    title: const Text('Documents'),
+                    onTap: () {
+                      AppNavigators.gotoDocumentations();
+                    },
+                  ),
+                  ListTile(
+                    title: const Text('Feed back'),
+                    onTap: () {},
+                  ),
+                ],
+              ),
             ),
             body: Column(
               children: [
@@ -32,7 +65,7 @@ class HomeScreen extends GetView<HomeController> {
                               color: Theme.of(context).dividerColor,
                             ),
                           ),
-                          color: Theme.of(context).secondaryHeaderColor,
+                          color: Theme.of(context).colorScheme.surfaceVariant,
                         ),
                         child: ListTile(
                           title: Text(conversation.name ?? ''),

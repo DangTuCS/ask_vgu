@@ -27,4 +27,15 @@ class GraphlitQuery {
       }
     }
   ''';
+
+  static const String getMessages = r'''
+    query Conversation($conversationId: ID!) {
+      conversation(id: $conversationId) {
+        messages {
+          message
+          role
+        }
+      }
+    }
+  ''';
 }
