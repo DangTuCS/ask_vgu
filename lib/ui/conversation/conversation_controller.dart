@@ -26,7 +26,7 @@ class ConversationController extends GetxController {
     conversationId = Get.arguments;
     getMessages();
     scrollController.addListener(() {
-      if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+      if (scrollController.position.pixels == scrollController.position.minScrollExtent) {
         isBottom.value = true;
       } else {
         isBottom.value = false;
@@ -36,7 +36,7 @@ class ConversationController extends GetxController {
 
   void scrollToBottom() async {
     await Future.delayed(const Duration(milliseconds: 100));
-    scrollController.jumpTo(scrollController.position.maxScrollExtent);
+    scrollController.jumpTo(scrollController.position.minScrollExtent);
   }
 
   @override
@@ -47,7 +47,7 @@ class ConversationController extends GetxController {
 
   Future<void> getMessages() async {
     var result = await _repository.getMessages(conversationId: conversationId!);
-    binding.messages.assignAll(result);
+    binding.messages.assignAll(result.reversed);
     binding.messages.refresh();
     await Future.delayed(const Duration(milliseconds: 100));
     scrollToBottom();
