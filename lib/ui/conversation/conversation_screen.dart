@@ -26,8 +26,16 @@ class ConversationScreen extends GetView<ConversationController> {
                 child: Column(
                   children: [
                     Obx(() {
+                      if (controller.binding.messages.isEmpty) {
+                        return const Expanded(
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      }
                       return Expanded(
                         child: ListView.separated(
+                            reverse: true,
                             controller: controller.scrollController,
                             padding: EdgeInsets.zero,
                             itemBuilder: (ctx, index) {
@@ -91,7 +99,10 @@ class ConversationScreen extends GetView<ConversationController> {
                       child: CircleAvatar(
                         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
                         radius: 24,
-                        child: const Icon(Icons.arrow_downward_sharp,color: Colors.white,),
+                        child: const Icon(
+                          Icons.arrow_downward_sharp,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   );
