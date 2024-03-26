@@ -56,7 +56,7 @@ class ConversationController extends GetxController {
   Future<void> scrollToLast() async {
     await Future.delayed(const Duration(milliseconds: 100));
     Scrollable.ensureVisible(
-      GlobalObjectKey(binding.messages.length-1).currentContext!,
+      GlobalObjectKey(binding.messages.length - 1).currentContext!,
       duration: const Duration(milliseconds: 100),
       curve: Curves.easeInOut,
     );
@@ -75,14 +75,14 @@ class ConversationController extends GetxController {
       message: messageText,
       role: Role.USER,
     );
-    binding.messages.add(message);
+    binding.messages.insert(0, message);
     hideKeyboard();
-    binding.messages.add(MessageModel(role: Role.ASSISTANT, message: 'Typing...'));
+    binding.messages.insert(0, MessageModel(role: Role.ASSISTANT, message: 'Typing...'));
     isLoading.value = true;
     var newMessage = await _repository.postMessage(message: messageText, conversationId: conversationId!);
-    binding.messages.removeLast();
+    binding.messages.removeAt(0);
     isLoading.value = false;
-    binding.messages.add(newMessage);
+    binding.messages.insert(0, newMessage);
     scrollToLast();
     binding.messages.refresh();
   }
