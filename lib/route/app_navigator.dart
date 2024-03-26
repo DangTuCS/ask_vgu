@@ -17,4 +17,8 @@ class AppNavigators {
   static Future<dynamic>? gotoPdfView({required String? path}) async {
     return await Get.toNamed(AppRoute.pdfView, arguments: path);
   }
+
+  static Future<dynamic>? gotoLogin() async {
+    return await Get.offAllNamed(AppRoute.login);
+  }
 }

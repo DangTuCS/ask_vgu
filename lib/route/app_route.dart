@@ -1,3 +1,5 @@
+import 'package:ask_vgu/login/login_binding.dart';
+import 'package:ask_vgu/login/login_screen.dart';
 import 'package:ask_vgu/ui/conversation/conversation_binding.dart';
 import 'package:ask_vgu/ui/conversation/conversation_screen.dart';
 import 'package:ask_vgu/ui/documents/documents_binding.dart';
@@ -11,6 +13,7 @@ import 'package:get/get.dart';
 
 class AppRoute {
   static const String splash = '/';
+  static const String login = '/login';
   static const String home = '/home';
   static const String conversation = '/conversation';
   static const String documentations = '/documentations';
@@ -22,6 +25,11 @@ final routes = [
     name: AppRoute.splash,
     page: () => const SplashScreen(),
     bindings: [SplashBinding()],
+  ),
+  GetPage(
+    name: AppRoute.login,
+    page: () => const LoginScreen(),
+    binding: LoginBinding(),
   ),
   GetPage(
     name: AppRoute.home,

@@ -9,6 +9,6 @@ class SplashController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    AppNavigators.gotoHome();
+    AppNavigators.gotoLogin();
   }
 }

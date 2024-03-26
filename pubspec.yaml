@@ -47,6 +47,8 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^20.4.54
   easy_image_viewer: ^1.4.1
   url_launcher: ^6.2.5
+  icons_launcher: ^2.1.7
+  google_sign_in: ^6.2.1
 
 dev_dependencies:
   flutter_test:

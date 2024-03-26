@@ -12,7 +12,20 @@
           "package_name": "com.vgu.ask_vgu.ask_vgu"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1094766589175-m67080kqjv2kkig87t3l077songlkalf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vgu.ask_vgu.ask_vgu",
+            "certificate_hash": "4a647e8d30383740d47ca24dc13d2fe5bca94fe4"
+          }
+        },
+        {
+          "client_id": "1094766589175-j8ssl2btkb4aab0sj428cft13ffbs3mn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBP0RCvYn_Eauyrb-S_lzjZagW1nQ8iZGk"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1094766589175-j8ssl2btkb4aab0sj428cft13ffbs3mn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1094766589175-gdo6k92b0h8vr5rtttc8gcbcu3u12nua.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vgu.askvgu.askVgu"
+              }
+            }
+          ]
         }
       }
     }
