@@ -49,6 +49,10 @@ dependencies:
   url_launcher: ^6.2.5
   icons_launcher: ^2.1.7
   google_sign_in: ^6.2.1
+  cached_network_image: ^3.3.1
+  shared_preferences: ^2.2.2
+  cloud_firestore: ^4.15.9
+  flutter_slidable: ^3.1.0
 
 dev_dependencies:
   flutter_test:

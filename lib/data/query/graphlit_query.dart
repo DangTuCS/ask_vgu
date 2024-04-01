@@ -38,4 +38,13 @@ class GraphlitQuery {
       }
     }
   ''';
+
+  static const String deleteConversation = r'''
+    mutation DeleteConversation($id: ID!) {
+      deleteConversation(id: $id) {
+        id
+        state
+      }
+    }
+  ''';
 }

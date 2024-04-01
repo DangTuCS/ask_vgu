@@ -7,6 +7,8 @@ import 'package:ask_vgu/ui/documents/documents_screen.dart';
 import 'package:ask_vgu/ui/documents/widget/pdf_view.dart';
 import 'package:ask_vgu/ui/home/home_binding.dart';
 import 'package:ask_vgu/ui/home/home_screen.dart';
+import 'package:ask_vgu/ui/new_conversation/new_conversation_binding.dart';
+import 'package:ask_vgu/ui/new_conversation/new_conversation_screen.dart';
 import 'package:ask_vgu/ui/splash/splash_binding.dart';
 import 'package:ask_vgu/ui/splash/splash_screen.dart';
 import 'package:get/get.dart';
@@ -16,6 +18,7 @@ class AppRoute {
   static const String login = '/login';
   static const String home = '/home';
   static const String conversation = '/conversation';
+  static const String newConversation = '/newConversation';
   static const String documentations = '/documentations';
   static const String pdfView = '/pdfView';
 }
@@ -54,5 +57,10 @@ final routes = [
         path: path as String,
       );
     },
+  ),
+  GetPage(
+    name: AppRoute.newConversation,
+    page: () => const NewConversationScreen(),
+    binding: NewConversationBinding(),
   ),
 ];

@@ -21,4 +21,8 @@ class AppNavigators {
   static Future<dynamic>? gotoLogin() async {
     return await Get.offAllNamed(AppRoute.login);
   }
+
+  static Future<dynamic>? gotoNewConversations() async {
+    return await Get.toNamed(AppRoute.newConversation);
+  }
 }

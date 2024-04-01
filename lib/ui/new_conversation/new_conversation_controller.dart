@@ -1,18 +1,20 @@
-import 'package:ask_vgu/data_controller.dart';
+import 'package:ask_vgu/domain/firestore_repository.dart';
 import 'package:ask_vgu/domain/graphlit_repository.dart';
 import 'package:ask_vgu/model/conversantion.dart';
 import 'package:ask_vgu/model/message_model.dart';
+import 'package:ask_vgu/utils/share_prefs/pref_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'conversation_binding.dart';
+import 'new_conversation_binding.dart';
 
-class ConversationController extends GetxController {
-  final ConversationBinding binding = ConversationBinding();
+class NewConversationController extends GetxController {
+  final FireStoreRepository _fireStoreRepository;
+  final NewConversationBinding binding = NewConversationBinding();
 
   final GraphlitRepository _repository;
 
-  ConversationController(this._repository);
+  NewConversationController(this._repository, this._fireStoreRepository);
 
   String? conversationId;
   final messageController = TextEditingController();
@@ -21,17 +23,44 @@ class ConversationController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isBottom = true.obs;
 
+  String email = '';
+
   @override
   void onInit() {
     super.onInit();
     conversationId = Get.arguments;
-    getMessages();
     scrollController.addListener(() {
       if (scrollController.position.pixels == scrollController.position.minScrollExtent) {
         isBottom.value = true;
       } else {
         isBottom.value = false;
       }
+    });
+    email = appPrefs.email;
+  }
+
+  void firstMessageSending() {
+    if (messageController.text.isEmpty) return;
+    var messageText = messageController.text;
+    messageController.clear();
+    var message = MessageModel(
+      message: messageText,
+      role: Role.USER,
+    );
+    binding.messages.insert(0, message);
+    binding.messages.insert(0, MessageModel(role: Role.ASSISTANT, message: 'Typing...'));
+    isLoading.value = true;
+    _repository.postMessage(message: messageText, conversationId: null).then((value) {
+      binding.messages.removeAt(0);
+      isLoading.value = false;
+      binding.messages.insert(0, value.$1);
+      conversationId = value.$2;
+      _fireStoreRepository.addNewConversation(conversation: Conversation(
+        id: conversationId!,
+        name: messageText,
+      ), email: email);
+      scrollToLast();
+      binding.messages.refresh();
     });
   }
 

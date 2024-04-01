@@ -1,5 +1,6 @@
 import 'package:ask_vgu/main_binding.dart';
 import 'package:ask_vgu/route/app_route.dart';
+import 'package:ask_vgu/utils/share_prefs/pref_utils.dart';
 import 'package:ask_vgu/utils/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await PrefUtils.init();
   runApp(const MyApp());
 }
 

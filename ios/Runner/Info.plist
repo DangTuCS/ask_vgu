@@ -58,6 +58,8 @@
     		</array>
     	</dict>
     </array>
+    <key>GIDClientID</key>
+    <string>1094766589175-gdo6k92b0h8vr5rtttc8gcbcu3u12nua.apps.googleusercontent.com</string>
     <!-- End of the Google Sign-in Section -->
 </dict>
 </plist>

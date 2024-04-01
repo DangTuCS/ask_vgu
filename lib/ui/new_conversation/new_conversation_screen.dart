@@ -1,13 +1,12 @@
-import 'package:ask_vgu/model/message_model.dart';
 import 'package:ask_vgu/ui/conversation/widget/bubble_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'new_conversation_controller.dart';
 
-import 'conversation_controller.dart';
 
-class ConversationScreen extends GetView<ConversationController> {
-  const ConversationScreen({super.key});
+class NewConversationScreen extends GetView<NewConversationController> {
+  const NewConversationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +25,6 @@ class ConversationScreen extends GetView<ConversationController> {
                 child: Column(
                   children: [
                     Obx(() {
-                      if (controller.binding.messages.isEmpty) {
-                        return const Expanded(
-                          child: Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        );
-                      }
                       return Expanded(
                         child: ListView.separated(
                             reverse: true,
@@ -63,19 +55,27 @@ class ConversationScreen extends GetView<ConversationController> {
                               height: 58,
                               child: TextField(
                                   scrollPadding:
-                                      EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom + 16 * 4),
+                                  EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom + 16 * 4),
                                   controller: controller.messageController,
                                   decoration: const InputDecoration(
                                     hintText: 'Type a message',
                                     isDense: true,
                                   ),
                                   onSubmitted: (value) {
+                                    if (controller.binding.messages.isEmpty) {
+                                      controller.firstMessageSending();
+                                      return;
+                                    }
                                     controller.sendMessage();
                                   }),
                             ),
                           ),
                           IconButton(
                             onPressed: () {
+                              if (controller.binding.messages.isEmpty) {
+                                controller.firstMessageSending();
+                                return;
+                              }
                               controller.sendMessage();
                             },
                             icon: const Icon(Icons.send),
