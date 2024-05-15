@@ -7,4 +7,6 @@ abstract class FireStoreRepository {
   Future<void> addNewConversation({required Conversation conversation, required String email});
   Future<void> deleteConversation(String conversationId);
   Future<List<Conversation>> getConversations(String email);
+  Future<void> editConversationName(String conversationId, String name);
+  Future<void> submitFeedback(String feedback);
 }

@@ -12,12 +12,15 @@ class LoginScreen extends GetView<LoginController> {
       appBar: AppBar(
         title: const Text('Login'),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            controller.login();
-          },
-          child: const Text('Login with Google'),
+      body: Padding(
+        padding: const EdgeInsets.all(100.0),
+        child: Center(
+          child: InkWell(
+            onTap: () {
+              controller.login();
+            },
+            child: Image.asset('assets/images/google_sign_in.png'),
+          ),
         ),
       ),
     );

@@ -38,11 +38,13 @@ class HomeController extends GetxController {
     Get.offAllNamed('/login');
   }
 
-  void deleteConversation(String? conversationId) {
-    repository.deleteConversation(conversationId);
-
+  void deleteConversation(String? conversationId) async {
+    await repository.deleteConversation(conversationId);
+    await fireStoreRepository.deleteConversation(conversationId ?? '');
     getConversations();
   }
 
-  void editName(String? id, String s) {}
+  void editName(String? id, String s) {
+    fireStoreRepository.editConversationName(id ?? '', s).then((value) => getConversations());
+  }
 }

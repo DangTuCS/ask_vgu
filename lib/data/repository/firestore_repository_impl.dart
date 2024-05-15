@@ -1,6 +1,7 @@
 import 'package:ask_vgu/domain/firestore_repository.dart';
 import 'package:ask_vgu/model/conversantion.dart';
 import 'package:ask_vgu/model/person_model.dart';
+import 'package:ask_vgu/utils/share_prefs/pref_utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FireStoreRepositoryImpl implements FireStoreRepository {
@@ -15,7 +16,6 @@ class FireStoreRepositoryImpl implements FireStoreRepository {
   Future<PersonModel?> getPerson(String email) async {
     var user = await _firestore.collection('users').doc(email).get();
     if (user.exists) {
-      print(user.data());
       return PersonModel.fromMap(user.data()!);
     }
     return null;
@@ -23,17 +23,28 @@ class FireStoreRepositoryImpl implements FireStoreRepository {
 
   @override
   Future<void> addNewConversation({required Conversation conversation, required String email}) async {
-    await _firestore.collection('users').doc(email).collection('conversations').add(conversation.toMap());
+    await _firestore.collection('users').doc(email).collection('conversations').doc(conversation.id).set(conversation.toMap());
   }
 
   @override
   Future<void> deleteConversation(String conversationId) async {
-    await _firestore.collection('users').doc(conversationId).delete();
+    await _firestore.collection('users').doc(appPrefs.email).collection('conversations').doc(conversationId).delete();
   }
 
   @override
   Future<List<Conversation>> getConversations(String email) async {
     var conversations = await _firestore.collection('users').doc(email).collection('conversations').get();
     return conversations.docs.map((e) => Conversation.fromMap(e.data())).toList();
+  }
+
+  @override
+  Future<void> editConversationName(String conversationId, String name) async {
+    await _firestore.collection('users').doc(appPrefs.email).collection('conversations').doc(conversationId).update({'name': name});
+  }
+
+  @override
+  Future<void> submitFeedback(String feedback) async {
+    // user email -> feedback
+    await _firestore.collection('feedback').doc(appPrefs.email).set({'feedback': feedback});
   }
 }

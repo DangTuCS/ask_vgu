@@ -22,7 +22,7 @@ class SplashController extends GetxController {
       Get.find<DataController>().googleAccount = credential;
       AppNavigators.gotoHome();
     } else {
-      AppNavigators.gotoLogin();
+      AppNavigators.gotoHome();
     }
   }
 }

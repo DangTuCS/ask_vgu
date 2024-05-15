@@ -1,8 +1,8 @@
 import 'package:ask_vgu/route/app_navigator.dart';
 import 'package:ask_vgu/ui/home/widget/conversation_item.dart';
+import 'package:ask_vgu/ui/home/widget/feedback_dialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -38,7 +38,9 @@ class HomeScreen extends GetView<HomeController> {
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
-                AppNavigators.gotoNewConversations();
+                AppNavigators.gotoNewConversations()?.then((value) {
+                  controller.getConversations();
+                });
               },
               child: const Icon(Icons.add),
             ),
@@ -59,8 +61,12 @@ class HomeScreen extends GetView<HomeController> {
                     },
                   ),
                   ListTile(
-                    title: const Text('Feed back'),
-                    onTap: () {},
+                    title: const Text('Feedback'),
+                    onTap: () {
+                      Get.dialog(
+                        const FeedBackDialog(),
+                      );
+                    },
                   ),
                   ListTile(
                     title: const Text('Go to website'),
