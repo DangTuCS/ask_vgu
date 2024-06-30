@@ -74,6 +74,13 @@ class HomeScreen extends GetView<HomeController> {
                       launchUrlString('https://vgu.edu.vn', mode: LaunchMode.externalApplication);
                     },
                   ),
+                //   logout
+                  ListTile(
+                    title: const Text('Logout'),
+                    onTap: () {
+                      controller.logout();
+                    },
+                  ),
                 ],
               ),
             ),

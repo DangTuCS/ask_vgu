@@ -12,7 +12,7 @@ class ConversationScreen extends GetView<ConversationController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Theme.of(context).backgroundColor,
+      color: Theme.of(context).colorScheme.surface,
       child: SafeArea(
         top: false,
         child: Scaffold(
